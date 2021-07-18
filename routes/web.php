@@ -37,9 +37,12 @@ Route::prefix('admin')->middleware('auth')->group(function (){
 Route::get('/course-register','App\Http\Controllers\RegisterController@create')->name('course.register.create');
 Route::post('/store-register','App\Http\Controllers\RegisterController@store')->name('course.register.store');
 Route::get('/user-register','App\Http\Controllers\RegisterController@user_list')->name('course.register.user.list');
-Route::get('logout',function (){
-   auth()->logout();
+Route::get('/logout',function ()
+{
+   Auth::logout();
+   return view('home');
 })->name('admin.logout');
+
 Route::get('/', function () {
     return view('home');
     redirect('/');

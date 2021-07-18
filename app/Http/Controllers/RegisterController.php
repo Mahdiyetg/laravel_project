@@ -5,6 +5,7 @@ use App\Models\Course;
 use App\Models\User;
 use App\Models\Register;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -28,7 +29,8 @@ class RegisterController extends Controller
         $register->user_id=auth()->id();
         $register->course_id=$request->course_id;
         $user_list=Register::where('user_id',auth()->id())->where('course_id',$request->course_id)->first();
-        if ($user_list){
+        if ($user_list)
+        {
             return redirect()->back()->withErrors(['e'=>'کلاس قبلا ثبت نام شده است']);
         }
         $register->save();
@@ -40,7 +42,12 @@ class RegisterController extends Controller
     {
         $reg=Register::find($id);
         $reg->delete();
+        $user=Auth::user();
+        if($user->type === 'admin')
         return redirect()->to(route('admin.index.course'))->with('message','ok');
+        else
+        return back();
+
     }
 
     public function user_list()

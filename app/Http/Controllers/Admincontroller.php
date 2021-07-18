@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Hash;
 
 class Admincontroller extends Controller
 {
-    public function coach_list(){
+    public function coach_list()
+    {
         $coaches=User::where('type','coach')->get();
         return view('admin.coach-list')->with(['coaches'=>$coaches]);
     }
@@ -22,16 +23,19 @@ class Admincontroller extends Controller
     public function store_coach(Request $request)
     {
         $request->validate([
-            'name'=>['required'],
             'email'=>['email','required']
         ]);
-        $user=new User();
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->password=Hash::make("123456");
+
+        $user=User::all()->where('email',$request->email)->first();
+        if($user != null)
+        {
         $user->type='coach';
         $user->save();
-        return redirect()->to(route('admin.index.coach'))->with('message','ok');
+        return back()->with('message','انجام شد');
+        }
+        else
+        return back()->with('message','کاربر وجود ندارد');
+
     }
 
     public function destroy_coach($id)

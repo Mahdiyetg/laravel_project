@@ -7,10 +7,6 @@
         @csrf
         <div class="form-row mt-3">
             <div class="col col-lg-4 text-right">
-                <label for="" class="text-right">نام مربی  :</label>
-                <input type="text" class="form-control" name="name" placeholder="نام مربی ">
-            </div>
-            <div class="col col-lg-4 text-right">
                 <label for="" class="text-right"> ایمیل  :</label>
                 <input type="email" class="form-control" name="email" placeholder="ایمیل مربی ">
             </div>
@@ -19,5 +15,12 @@
         <div class="form-group text-center mt-3">
             <button class="btn btn-success">افزودن</button>
         </div>
+
+        @if(session('message')!==null)
+        <div class=" mt-3 alert alert-info alert-dismissible fade show" role="alert">
+            {{ session('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+         @endif
     </form>
 @endsection

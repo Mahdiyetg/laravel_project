@@ -29,6 +29,13 @@ class CourseController extends Controller
             'start'=>['required'],
             'coach_id'=>['required']
         ]);
+        $n=Course::all()->where('name',$request->name)->first();
+        $t=Course::all()->where('type',$request->type)->first();
+        $p=Course::all()->where('price',$request->price)->first();
+        $s=Course::all()->where('start',$request->start)->first();
+        $ci=Course::all()->where('coach_id',$request->coach_id)->first();
+        if($n == null || $t == null || $p== null || $s == null || $ci == null)
+        {
         $course=new Course();
         $course->type=$request->type;
         $course->name=$request->name;
@@ -37,6 +44,10 @@ class CourseController extends Controller
         $course->coach_id=$request->coach_id;
         $course->save();
         return redirect()->to(route('admin.index.course'))->with('message','ok');
+        }
+        else
+        return back()->with('message',' کلاس وجود دارد');
+
     }
 
     public function edit($id)

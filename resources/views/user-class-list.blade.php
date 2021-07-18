@@ -18,7 +18,7 @@
                @foreach($list as $item)
                    <tr >
                        <td>{{$item->course['name']}}</td>
-                       <td>{{$item->user['name']}}</td>
+                       <td>{{$item->course->coach['name']}} </td>
                        <td>{{$item->course['start']}} </td>
                        <td>{{($item->course->type=='online')?"آنلاین":"حضوری"}}</td>
                        <td>

@@ -47,12 +47,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('course.register.create')}}">لیست کلاس ها</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">درباره باشگاه</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">تماس با ما</a>
-                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

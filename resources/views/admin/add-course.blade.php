@@ -48,5 +48,11 @@
         <div class="form-group text-center mt-3">
             <button class="btn btn-success">افزودن</button>
         </div>
+        @if(session('message')!==null)
+        <div class=" mt-3 alert alert-info alert-dismissible fade show" role="alert">
+            {{ session('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+         @endif
     </form>
 @endsection
