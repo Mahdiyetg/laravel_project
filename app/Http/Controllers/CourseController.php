@@ -34,19 +34,19 @@ class CourseController extends Controller
         $p=Course::all()->where('price',$request->price)->first();
         $s=Course::all()->where('start',$request->start)->first();
         $ci=Course::all()->where('coach_id',$request->coach_id)->first();
-        if($n == null || $t == null || $p== null || $s == null || $ci == null)
+        if($n == null || $t == null || $p == null || $s == null || $ci == null)
         {
-        $course=new Course();
-        $course->type=$request->type;
-        $course->name=$request->name;
-        $course->price=$request->price;
-        $course->start=$request->start;
-        $course->coach_id=$request->coach_id;
-        $course->save();
-        return redirect()->to(route('admin.index.course'))->with('message','ok');
+            $course=new Course();
+            $course->type=$request->type;
+            $course->name=$request->name;
+            $course->price=$request->price;
+            $course->start=$request->start;
+            $course->coach_id=$request->coach_id;
+            $course->save();
+            return redirect()->to(route('admin.index.course'))->with('message','ok');
         }
         else
-        return back()->with('message',' کلاس وجود دارد');
+            return back()->with('message',' کلاس وجود دارد');
 
     }
 

@@ -35,7 +35,6 @@ class RegisterController extends Controller
         }
         $register->save();
         return redirect()->back()->with('message','success');
-
     }
 
     public function destroy($id)

@@ -9,7 +9,7 @@ class Course extends Model
     use HasFactory;
     public function coach()
     {
-        return $this->hasOne(User::class,'coach_id');
+        return $this->belongsTo(User::class,'coach_id');
     }
 
     public function users(){
